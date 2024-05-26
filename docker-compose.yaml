@@ -1,0 +1,90 @@
+version: "3.9"
+services:
+  logchimp-db:
+    container_name: logchimp-db
+    image: postgres:15.3-alpine3.18
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      - POSTGRES_USER=${LOGCHIMP_DB_USER}
+      - POSTGRES_PASSWORD=${LOGCHIMP_DB_PASSWORD}
+      - POSTGRES_DB=${LOGCHIMP_DB_DATABASE}
+    volumes:
+      - ./.pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LOGCHIMP_DB_USER} -d ${LOGCHIMP_DB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - logchimp-network
+
+  logchimp-api:
+    container_name: logchimp-api
+    image: ilhamakbarki/logchimp_api
+    build:
+      context: .
+      dockerfile: docker-images/api.Dockerfile
+    environment:
+      - LOGCHIMP
+      - NODE_ENV
+      - LOGCHIMP_SECRET_KEY
+      - LOGCHIMP_DB_HOST
+      - LOGCHIMP_DB_DATABASE
+      - LOGCHIMP_DB_PORT
+      - LOGCHIMP_DB_USER
+      - LOGCHIMP_DB_PASSWORD
+      - LOGCHIMP_DB_SSL
+      - LOGCHIMP_MAIL_SERVICE
+      - LOGCHIMP_MAIL_HOST
+      - LOGCHIMP_MAIL_USER
+      - LOGCHIMP_MAIL_PASSWORD
+      - LOGCHIMP_MAIL_PORT
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:3000/api | grep -q 'HTTP/1.1 200 OK'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - logchimp-network
+    depends_on:
+      logchimp-db:
+        condition: service_healthy
+
+  logchimp-ui:
+    container_name: logchimp-ui
+    image: ilhamakbarki/logchimp_ui
+    build:
+      context: .
+      dockerfile: docker-images/ui.Dockerfile
+    ports:
+      - "${UI_PORT:-8080}:8080"
+    environment:
+      - NODE_ENV
+      - APP_SERVER_URL
+    volumes:
+      - ./docker-images/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      logchimp-api:
+        condition: service_healthy
+    networks:
+      - logchimp-network
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -I http://localhost:8080 | grep -q 'HTTP/1.1 200 OK'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+networks:
+  logchimp-network:
+    driver: bridge
