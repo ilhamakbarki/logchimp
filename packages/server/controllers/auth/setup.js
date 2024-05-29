@@ -2,7 +2,7 @@
 const database = require("../../database");
 
 // services
-const createUser = require("../../services/auth/createUser");
+const { createUser } = require("../../services/auth/createUser");
 
 // utils
 const { validEmail } = require("../../helpers");

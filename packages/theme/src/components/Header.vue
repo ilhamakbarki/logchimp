@@ -31,7 +31,7 @@
                   <template #icon>
                     <logout-icon />
                   </template>
-                  Sign out
+                  Exit
                 </dropdown-item>
                 <dropdown-item v-if="showVersion" :disabled="true">
                   {{ version }}
@@ -40,7 +40,7 @@
             </template>
           </dropdown-wrapper>
           <div v-else class="nav-item nav-auth">
-            <Button type="primary" href="/login" size="small"> Login </Button>
+            <!-- <Button type="primary" href="/login" size="small"> Login </Button> -->
             <Button
               v-if="settingsStore.get.allowSignup"
               type="primary"

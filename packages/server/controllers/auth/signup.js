@@ -1,5 +1,5 @@
 // services
-const createUser = require("../../services/auth/createUser");
+const { createUser } = require("../../services/auth/createUser");
 
 const database = require("../../database");
 

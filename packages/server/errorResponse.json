@@ -22,7 +22,9 @@
 		"authentication": {
 			"invalidEmail": "Enter valid email",
 			"noPasswordProvided": "No password provided",
-			"setupAlreadyCompleted": "Setup has already been completed."
+			"setupAlreadyCompleted": "Setup has already been completed.",
+      "noToken": "Token is missing",
+      "unauthorized": "Unauthorized"
 		},
 		"roles": {
 			"roleNotFound": "Role not found",
@@ -41,7 +43,6 @@
 			"expired": "Your password reset link has expired",
 			"invalidToken": "Invalid password reset link",
 			"missingToken": "Password reset token is missing"
-
     },
 		"posts": {
 			"titleMissing": "Post title missing",
