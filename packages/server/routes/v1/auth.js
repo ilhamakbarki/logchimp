@@ -12,6 +12,7 @@ const validateEmailToken = require("../../middlewares/validateEmailToken");
 
 router.post("/auth/signup", mailConfigExists, auth.signup);
 router.post("/auth/login", exists, auth.login);
+router.post("/auth/login-by-token", auth.loginByJwt);
 
 router.post("/auth/setup", mailConfigExists, auth.setup);
 router.get("/auth/setup", auth.isSiteSetup);
