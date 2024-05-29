@@ -22,11 +22,14 @@ services:
       - logchimp-network
 
   logchimp-api:
+    restart: always
     container_name: logchimp-api
     image: ilhamakbarki/logchimp_api
     build:
       context: .
       dockerfile: docker-images/api.Dockerfile
+    ports:
+      - "${API_PORT:-3000}:3000"
     environment:
       - LOGCHIMP
       - NODE_ENV
@@ -38,6 +41,7 @@ services:
       - LOGCHIMP_DB_PASSWORD
       - LOGCHIMP_DB_SSL
       - LOGCHIMP_MAIL_SERVICE
+      - LOGCHIMP_MAIL_FROM
       - LOGCHIMP_MAIL_HOST
       - LOGCHIMP_MAIL_USER
       - LOGCHIMP_MAIL_PASSWORD
@@ -58,6 +62,7 @@ services:
         condition: service_healthy
 
   logchimp-ui:
+    restart: always
     container_name: logchimp-ui
     image: ilhamakbarki/logchimp_ui
     build:

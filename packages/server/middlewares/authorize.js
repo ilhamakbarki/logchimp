@@ -1,8 +1,11 @@
 const error = require("../errorResponse.json");
 
 const authorize = (req, res, next) => {
+  if (req.client) {
+    // Skip Authorize if X-API-Key
+    return next();
+  }
   const hasUser = req.user?.userId;
-
   if (hasUser) {
     // user is blocked
     const isBlocked = req.user.isBlocked;
