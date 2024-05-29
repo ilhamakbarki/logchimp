@@ -8,6 +8,7 @@ const logger = require("../../utils/logger");
 
 if (config.mail) {
   const mail = nodemailer.createTransport({
+    from: config.mail.from,
     host: config.mail.host,
     port: config.mail.port,
     secure: false,

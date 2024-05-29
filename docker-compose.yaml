@@ -27,6 +27,8 @@ services:
     build:
       context: .
       dockerfile: docker-images/api.Dockerfile
+    ports:
+      - "${API_PORT:-3000}:3000"
     environment:
       - LOGCHIMP
       - NODE_ENV
@@ -38,6 +40,7 @@ services:
       - LOGCHIMP_DB_PASSWORD
       - LOGCHIMP_DB_SSL
       - LOGCHIMP_MAIL_SERVICE
+      - LOGCHIMP_MAIL_FROM
       - LOGCHIMP_MAIL_HOST
       - LOGCHIMP_MAIL_USER
       - LOGCHIMP_MAIL_PASSWORD

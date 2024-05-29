@@ -41,10 +41,7 @@ const passwordReset = async (url, tokenPayload) => {
       siteTitle,
     });
 
-    const noReplyEmail = `noreply@${urlObject.host}`;
-
     await mail.sendMail({
-      from: noReplyEmail,
       to: tokenPayload.email,
       subject: `${siteTitle} - Reset your account password`,
       text: passwordResetMailContent.text,
