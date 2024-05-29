@@ -46,8 +46,6 @@ async function getRoadmaps() {
 
   try {
     const response = await getAllRoadmaps();
-    roadmaps.value = response.data.roadmaps;
-
     if (response.data.roadmaps.length) {
 			roadmaps.value.push(...response.data.roadmaps);
 			page.value += 1;

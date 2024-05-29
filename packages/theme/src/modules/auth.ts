@@ -7,6 +7,10 @@ interface AuthenticateUserArgs {
   password: string;
 }
 
+interface AuthenticateUserByJwt {
+  token: string;
+}
+
 interface SetNewPasswordArgs {
   token: string;
   password: string;
@@ -145,6 +149,29 @@ export const setNewPassword = async ({
     data: {
       token,
       password,
+    },
+  });
+};
+
+
+/**
+ * Sign in to user account by JWT
+ *
+ * @param {string} jwt token
+ * @returns {object} response
+ */
+export const signinByJwt = async ({
+  token,
+}: AuthenticateUserByJwt): Promise<
+  AxiosResponse<{
+    user: AuthenticateUserType;
+  }>
+> => {
+  return await axios({
+    method: 'POST',
+    url: '/api/v1/auth/login-by-token',
+    data: {
+      token,
     },
   });
 };

@@ -30,6 +30,7 @@ const config = () => {
   const mailService = process.env.LOGCHIMP_MAIL_SERVICE;
   const mailHost = process.env.LOGCHIMP_MAIL_HOST;
   const mailUser = process.env.LOGCHIMP_MAIL_USER;
+  const mailFrom = process.env.LOGCHIMP_MAIL_FROM;
   const mailPassword = process.env.LOGCHIMP_MAIL_PASSWORD;
   const mailPort = process.env.LOGCHIMP_MAIL_PORT;
 
@@ -54,6 +55,7 @@ const config = () => {
         service: mailService,
         host: mailHost,
         user: mailUser,
+        from: mailFrom,
         password: mailPassword,
         port: mailPort,
       },
