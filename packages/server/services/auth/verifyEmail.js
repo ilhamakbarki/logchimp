@@ -40,10 +40,7 @@ const verifyEmail = async (url, tokenPayload) => {
       siteTitle,
     });
 
-    const noReplyEmail = `noreply@${urlObject.host}`;
-
     await mail.sendMail({
-      from: noReplyEmail,
       to: tokenPayload.email,
       subject: `${siteTitle} - Please confirm your email`,
       text: onboardingMailContent.text,

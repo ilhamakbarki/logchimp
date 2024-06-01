@@ -27,6 +27,8 @@ services:
     build:
       context: .
       dockerfile: docker-images/api.Dockerfile
+    ports:
+      - "${API_PORT:-3000}:3000"
     environment:
       - LOGCHIMP
       - NODE_ENV
