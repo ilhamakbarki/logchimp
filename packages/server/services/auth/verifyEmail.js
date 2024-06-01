@@ -7,6 +7,8 @@ const { createToken } = require("../../services/token.service");
 
 // utils
 const logger = require("../../utils/logger");
+const logchimpConfig = require("../../utils/logchimpConfig");
+const config = logchimpConfig();
 
 const verifyEmail = async (url, tokenPayload) => {
   const token = createToken(tokenPayload, {
@@ -41,6 +43,7 @@ const verifyEmail = async (url, tokenPayload) => {
     });
 
     await mail.sendMail({
+      from: config.mail.from,
       to: tokenPayload.email,
       subject: `${siteTitle} - Please confirm your email`,
       text: onboardingMailContent.text,
