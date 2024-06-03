@@ -53,7 +53,7 @@ const loginByJwt = async (auth) => {
         username,
         email,
         password: hashedPassword,
-        avatar: decoded.avatar,
+        avatar: decoded.avatar || 'https://gravatar.com/avatar',
         isVerified: true,
       });
     }
