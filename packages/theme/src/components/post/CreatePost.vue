@@ -2,11 +2,11 @@
   <div class="card">
     <l-text
       v-model="title.value"
-      label="Title"
+      label="عنوان المقترح أو الميزة المطلوبة"
       type="text"
       name="Post title"
       data-test="post-title"
-      placeholder="Name of the feature"
+      placeholder="اكتب عنوان المقترح هنا"
       :error="title.error"
       :disabled="createPostPermissionDisabled"
       @keyup-enter="submitPost"
@@ -14,10 +14,10 @@
     />
     <l-textarea
       v-model="description"
-      label="Description"
+      label="وصف المقترح أو الميزة المطلوبة"
       rows="4"
       name="Post description"
-      placeholder="What would you use it for?"
+      placeholder="أضف وصفا مفصل لمقترحك أو الميزة"
       :disabled="createPostPermissionDisabled"
     />
     <div style="display: flex; justify-content: center;">
@@ -28,7 +28,7 @@
         :disabled="createPostPermissionDisabled"
         @click="submitPost"
       >
-        Submit
+      المطلوبة
       </Button>
     </div>
   </div>
