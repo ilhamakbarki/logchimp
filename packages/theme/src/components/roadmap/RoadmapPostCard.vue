@@ -13,13 +13,18 @@
             <router-link data-test="post-link" :to="`/posts/${post.slug}`">
               <h5>{{ post.title }}</h5>
             </router-link>
-            <span
+            <div
               v-if="!isExpanded"
               data-test="post-board-name"
               class="post-card-board"
             >
-              {{ post.board.name }}
-            </span>
+              <board-badge
+                :show-board="true"
+                :name="post.board.name"
+                :color="post.board.color"
+                :url="post.board.url"
+              />
+            </div>
             <time
               v-else
               data-test="post-date"
