@@ -32,15 +32,15 @@
         <div class="form-column">
           <l-text
             v-model="postData.title"
-            label="Title"
-            placeholder="Name of the feature"
+            label="عنوان المقترح أو الميزة المطلوبة"
+            placeholder="اكتب عنوان المقترح هنا"
           />
 
           <l-textarea
             v-model="postData.contentMarkdown"
-            label="Description"
+            label="وصف المقترح أو الميزة المطلوبة"
             rows="4"
-            placeholder="What would you use it for?"
+            placeholder="أضف وصفا مفصل لمقترحك أو الميزة"
           />
         </div>
 
