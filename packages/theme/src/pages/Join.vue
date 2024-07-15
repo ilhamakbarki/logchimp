@@ -130,7 +130,7 @@ async function join() {
 		if (route.query.redirect) {
 			router.push(route.query.redirect.toString());
 		} else {
-			router.push("/");
+			router.push("/roadmaps");
 		}
 	} catch (error: any) {
 		if (error.response.data.code === "MAIL_CONFIG_MISSING") {
@@ -156,7 +156,7 @@ onMounted(() => {
     if (route.query.redirect) {
 			router.push(route.query?.redirect.toString());
 		} else {
-			router.push("/");
+			router.push("/roadmaps");
 		}
   }
 })

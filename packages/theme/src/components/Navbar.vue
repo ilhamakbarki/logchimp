@@ -16,14 +16,6 @@
 				التحديثات
 			</div>
 		</router-link>
-		<router-link to="/boards" class="navbar-item">
-			<div class="navbar-item-icon">
-				<board-icon />
-			</div>
-			<div class="navbar-item-content">
-				الأفكار
-			</div>
-		</router-link>
 	</div>
 </template>
 
