@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
   const title = req.body.title;
   const contentMarkdown = req.body.contentMarkdown;
   const boardId = validUUID(req.body.boardId);
+  const roadmapId = process.env.DEFAULT_ROADMAP_ID || null;
 
   const checkPermission = permissions.includes("post:create");
   if (!checkPermission) {
@@ -65,6 +66,7 @@ exports.create = async (req, res) => {
         contentMarkdown,
         userId,
         boardId,
+        roadmap_id: roadmapId,
       })
       .into("posts")
       .returning("*");
