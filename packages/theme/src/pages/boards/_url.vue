@@ -13,7 +13,7 @@
               <template #icon>
                 <sort-desc-icon />
               </template>
-              الأحدث
+              Latest
             </tab-item>
             <tab-item
               :class="{
@@ -24,7 +24,7 @@
               <template #icon>
                 <sort-asc-icon />
               </template>
-              الأقدم
+              Oldest
             </tab-item>
           </tab>
 

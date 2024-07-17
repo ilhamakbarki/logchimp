@@ -1,13 +1,13 @@
 <template>
   <div v-if="isPostExist">
-    <h4 class="post-edit-heading">تعديل المنشور</h4>
+    <h4 class="post-edit-heading">Edit post</h4>
 		<div v-if="!postLoading">
 			<l-text
 				v-model="post.title"
-				label="عنوان المقترح أو الميزة المطلوبة"
+				label="Title"
 				type="text"
 				name="Post title"
-				placeholder="اكتب عنوان المقترح هنا"
+				placeholder="Name of the feature"
 				:error="postFieldError"
 				:disabled="updatePostPermissionDisabled"
 				@keyup-enter="savePost"
@@ -15,9 +15,9 @@
 			/>
 			<l-textarea
 				v-model="post.contentMarkdown"
-				label="وصف المقترح أو الميزة المطلوبة"
+				label="Description"
 				name="Post description"
-				placeholder="أضف وصفا مفصل لمقترحك أو الميزة"
+				placeholder="What would you use it for?"
 				:disabled="updatePostPermissionDisabled"
 			/>
 			<div style="display: flex; justify-content: flex-start">
@@ -27,7 +27,7 @@
 					:disabled="updatePostPermissionDisabled"
 					@click="savePost"
 				>
-        المطلوبة
+					Update
 				</Button>
 			</div>
 		</div>

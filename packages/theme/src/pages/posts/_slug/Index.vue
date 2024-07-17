@@ -43,7 +43,8 @@
 										<template #icon>
 											<edit-icon />
 										</template>
-                    يحرر
+										Edit
+
 									</dropdown-item>
 								</dropdown>
 							</template>

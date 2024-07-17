@@ -5,7 +5,7 @@
 				<home-icon />
 			</div>
 			<div class="navbar-item-content">
-				مقتراحتي
+				Home
 			</div>
 		</router-link>
 		<router-link to="/roadmaps" class="navbar-item">
@@ -13,7 +13,7 @@
 				<roadmap-icon />
 			</div>
 			<div class="navbar-item-content">
-				التحديثات
+				Roadmaps
 			</div>
 		</router-link>
 		<router-link to="/boards" class="navbar-item">
@@ -21,7 +21,7 @@
 				<board-icon />
 			</div>
 			<div class="navbar-item-content">
-				الأفكار
+				Boards
 			</div>
 		</router-link>
 	</div>
