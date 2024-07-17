@@ -10,7 +10,7 @@ const tokenError = (error: any) => {
 
   if (error.response.data.code === "USER_NOT_FOUND") {
     if (router.currentRoute.value.fullPath !== "/") {
-      router.push("/roadmaps");
+      router.push("/");
     }
   }
 

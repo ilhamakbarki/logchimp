@@ -72,7 +72,7 @@ async function login() {
     if (route.query.redirect) {
       router.push(route.query?.redirect.toString());
     } else {
-      router.push("/roadmaps");
+      router.push("/");
     }
   } catch (error) {
     router.push("/page-not-found");
@@ -85,7 +85,7 @@ function checkSession() {
     if (route.query.redirect) {
       router.push(route.query?.redirect.toString());
     } else {
-      router.push("/roadmaps");
+      router.push("/");
     }
   } else {
     login()

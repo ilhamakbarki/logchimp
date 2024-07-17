@@ -83,7 +83,7 @@ async function verifyEmail() {
     }
 	} catch (error: any) {
 		if (error.response.data.code === "USER_ALREADY_VERIFIED") {
-			return router.push("/roadmaps");
+			return router.push("/");
 		}
 
 		error.value = true;

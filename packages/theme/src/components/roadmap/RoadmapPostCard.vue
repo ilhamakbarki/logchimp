@@ -10,7 +10,7 @@
       <div style="width: 100%">
         <div class="post-card-section">
           <div>
-            <router-link data-test="post-link" :to="`/boards/${post.board.url}`">
+            <router-link data-test="post-link" :to="`/posts/${post.slug}`">
               <h5>{{ post.title }}</h5>
             </router-link>
             <div

@@ -33,7 +33,6 @@ services:
     environment:
       - LOGCHIMP
       - NODE_ENV
-      - DEFAULT_ROADMAP_ID
       - LOGCHIMP_SECRET_KEY
       - LOGCHIMP_DB_HOST
       - LOGCHIMP_DB_DATABASE

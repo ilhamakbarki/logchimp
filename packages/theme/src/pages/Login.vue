@@ -129,7 +129,7 @@ async function login() {
 		if (route.query.redirect) {
 			router.push(route.query?.redirect.toString());
 		} else {
-			router.push("/roadmaps");
+			router.push("/");
 		}
 	} catch (error: any) {
 		buttonLoading.value = false;
@@ -156,7 +156,7 @@ onMounted(() => {
     if (route.query.redirect) {
 			router.push(route.query?.redirect.toString());
 		} else {
-			router.push("/roadmaps");
+			router.push("/");
 		}
   }
 })
