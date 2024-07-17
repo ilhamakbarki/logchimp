@@ -53,7 +53,9 @@ export const useUserStore = defineStore("user", () => {
     setPermissions([]);
 
     localStorage.removeItem("user");
-    window.location.reload();
+    if (router.currentRoute.value.fullPath !== "/") {
+      router.push("/");
+    }
   }
 
   return {

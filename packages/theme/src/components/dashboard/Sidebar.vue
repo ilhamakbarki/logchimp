@@ -45,12 +45,12 @@
           <p>General</p>
         </router-link>
       </li>
-      <!-- <li>
+      <li>
         <router-link to="/dashboard/settings/billing" class="sidebar-list-item">
           <credit-card-icon />
           <p>Billing</p>
         </router-link>
-      </li> -->
+      </li>
       <li>
         <router-link to="/dashboard/settings/roles" class="sidebar-list-item">
           <shield-icon />
@@ -78,7 +78,7 @@
       <dropdown-wrapper>
         <template #default="dropdown">
           <dropdown v-if="dropdown.active" class="dashboard-sidebar-dropdown">
-            <!-- <dropdown-item @click="aboutLogChimp">
+            <dropdown-item @click="aboutLogChimp">
               <template #icon>
                 <info-icon />
               </template>
@@ -89,13 +89,13 @@
                 <twitter-icon />
               </template>
               Tweet @LogChimp!
-            </dropdown-item> -->
-            <!-- <dropdown-spacer /> -->
+            </dropdown-item>
+            <dropdown-spacer />
             <dropdown-item @click="logout">
               <template #icon>
                 <logout-icon />
               </template>
-              Exit
+              Sign Out
             </dropdown-item>
           </dropdown>
         </template>
@@ -214,5 +214,5 @@ $white: var(--color-white)
 		font-weight: 600
 
 .dashboard-sidebar-dropdown
-	top: -3rem
+	top: -9rem
 </style>

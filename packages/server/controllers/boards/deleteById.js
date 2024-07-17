@@ -9,7 +9,7 @@ const error = require("../../errorResponse.json");
 module.exports = async (req, res) => {
   const permissions = req.user.permissions;
 
-  const id = validUUID(req.body.boardId);
+  const id = validUUID(req.body.id);
 
   const checkPermission = permissions.includes("board:destroy");
   if (!checkPermission) {

@@ -11,7 +11,7 @@
     </main>
     <aside class="flex-1 mb-6 lg:mb-0">
       <site-setup-card v-if="showSiteSetupCard" />
-      <!-- <login-card v-if="!userStore.getUserId && !showSiteSetupCard" /> -->
+      <login-card v-if="!userStore.getUserId && !showSiteSetupCard" />
     </aside>
   </div>
 </template>
@@ -37,6 +37,7 @@ import { useUserStore } from "../store/user"
 import InfiniteScroll, { InfiniteScrollStateType } from "../components/ui/InfiniteScroll.vue";
 import PostItem from "../components/post/PostItem.vue";
 import SiteSetupCard from "../components/site/SiteSetupCard.vue";
+import LoginCard from "../components/auth/LoginCard.vue";
 
 const settingsStore = useSettingStore()
 const userStore = useUserStore()

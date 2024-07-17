@@ -202,9 +202,9 @@ const routes = [
     ],
   },
   {
-    path: "/verify",
-    name: "Verify",
-    component: () => import("./pages/LoginByJwt.vue"),
+    path: "/login",
+    name: "Login",
+    component: () => import("./pages/Login.vue"),
   },
   {
     path: "/join",
@@ -227,26 +227,15 @@ const routes = [
     component: () => import("./pages/passwordReset/Confirm.vue"),
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: "/(.*)",
     name: "Page not found",
-    component: () => import("./pages/pageNotFound.vue"),
+    component: () => () => import("./pages/pageNotFound.vue"),
   },
 ];
 
 const router = createRouter({
   history: createWebHistory("/"),
   routes,
-});
-
-
-const skipValidation = ['Verify', 'Page not found']
-router.beforeEach((to, from, next) => {
-  const { getUserId } = useUserStore()
-  if (!getUserId && !skipValidation.includes(to.name as string)) {
-    next({ name: 'Page not found', path: '/page-not-found' });
-  } else {
-    next();
-  }
 });
 
 export { router };

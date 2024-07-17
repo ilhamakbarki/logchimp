@@ -27,6 +27,9 @@ const error = require("../../errorResponse.json");
  * @returns {object|null} - Returning user data object from database or null
  */
 const createUser = async (req, res, next, userData) => {
+  // generate user unique identification
+  const userId = uuidv4(userData.email);
+
   const name = userData.name;
 
   // get username from email address
@@ -61,31 +64,58 @@ const createUser = async (req, res, next, userData) => {
       });
       return null;
     }
-    const result = await functionCreateUser({
-      name,
-      username,
-      email: userData.email,
-      password: hashedPassword,
-      avatar,
-    });
+
+    // insert user to database
+    const [newUser] = await database
+      .insert({
+        userId,
+        name,
+        username,
+        email: userData.email,
+        password: hashedPassword,
+        avatar,
+      })
+      .into("users")
+      .returning(["userId", "name", "username", "email", "avatar"]);
+
+    if (!newUser) {
+      return null;
+    }
+
+    // assign '@everyone' role
+    const getRole = await database
+      .select()
+      .from("roles")
+      .where({
+        name: "@everyone",
+      })
+      .first();
+
+    await database
+      .insert({
+        id: uuidv4(),
+        role_id: getRole.id,
+        user_id: newUser.userId,
+      })
+      .into("roles_users");
+
     const tokenPayload = {
-      userId: result.userId,
-      email: result.email,
+      userId: newUser.userId,
+      email: newUser.email,
       type: "emailVerification",
     };
     // send email verification
     const url = req.headers.origin;
-    verifyEmail(url, tokenPayload);
+    await verifyEmail(url, tokenPayload);
 
     // create auth token
     const authToken = createToken(tokenPayload, {
       expiresIn: "2d",
     });
 
-    delete result.password;
     return {
       authToken,
-      ...result,
+      ...newUser,
     };
   } catch (err) {
     logger.log({
@@ -100,48 +130,4 @@ const createUser = async (req, res, next, userData) => {
   }
 };
 
-const functionCreateUser = async (req) => {
-  // insert user to database
-  const [newUser] = await database
-    .insert({
-      userId: uuidv4(req.email),
-      name: req.name,
-      username: req.username,
-      email: req.email,
-      password: req.password,
-      avatar: req.avatar,
-      isVerified: req.isVerified || false,
-      isOwner: req.isOwner || false,
-      isBlocked: req.isBlocked || false,
-    })
-    .into("users")
-    .returning("*");
-
-  if (!newUser) {
-    return null;
-  }
-
-  // assign '@everyone' role
-  const getRole = await database
-    .select()
-    .from("roles")
-    .where({
-      name: "@everyone",
-    })
-    .first();
-
-  await database
-    .insert({
-      id: uuidv4(),
-      role_id: getRole.id,
-      user_id: newUser.userId,
-    })
-    .into("roles_users");
-
-  return newUser;
-}
-
-module.exports = {
-  createUser,
-  functionCreateUser,
-};
+module.exports = createUser;

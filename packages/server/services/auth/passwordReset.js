@@ -7,8 +7,6 @@ const { createToken } = require("../../services/token.service");
 
 // utils
 const logger = require("../../utils/logger");
-const logchimpConfig = require("../../utils/logchimpConfig");
-const config = logchimpConfig();
 
 const passwordReset = async (url, tokenPayload) => {
   const token = createToken(tokenPayload, {
@@ -43,8 +41,10 @@ const passwordReset = async (url, tokenPayload) => {
       siteTitle,
     });
 
+    const noReplyEmail = `noreply@${urlObject.host}`;
+
     await mail.sendMail({
-      from: config.mail.from,
+      from: noReplyEmail,
       to: tokenPayload.email,
       subject: `${siteTitle} - Reset your account password`,
       text: passwordResetMailContent.text,

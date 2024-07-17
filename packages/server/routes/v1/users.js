@@ -15,10 +15,6 @@ router.patch("/users/profile", middleware.apiAuth, users.updateProfile);
 router.get("/users/permissions", middleware.apiAuth, users.getUserPermissions);
 router.get("/users/dashboard", middleware.apiAuth, users.accessDashboard);
 
-
-// Hit By Server
-router.post('/users', middleware.apiAuth, users.signup)
-
 // TODO: create permission for user:read, user:update, user:create, user:delete
 // router.get("/users/get", middleware.apiAuth, users.accessDashboard);
 // router.get("/users/:user_id/get", middleware.apiAuth, users.getUserInfo);

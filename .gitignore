@@ -1,8 +1,5 @@
 .DS_Store
 node_modules
-.pg_data
-docker-compose.yaml
-!docker-images/docker-compose.yaml
 
 logchimp.config.json
 
