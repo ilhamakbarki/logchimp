@@ -50,6 +50,7 @@ pipeline {
             when { tag "release-*" }
             steps {
                 script{
+                    sendNotification("Waiting Approval to Deploy on Production")
                     def tagName = env.TAG_NAME
                     def approvers = APPROVAL.split(',')
                     def userName = input message: "Do you want to deploy ${tagName}?", submitter: APPROVAL, submitterParameter: "userName"
