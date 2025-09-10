@@ -6,8 +6,8 @@ pipeline {
     }
     environment {
         REGISTRY_HOST = credentials("DOCKER_REGISTRY_HOST")
-        DOCKER_IMAGE_BE = "logchimp_api"
-        DOCKER_IMAGE_FE = "logchimp_ui"
+        DOCKER_IMAGE_BE = "feedback_be"
+        DOCKER_IMAGE_FE = "feedback_fe"
         APPROVAL = credentials("APPROVAL_RELEASE")
         NOTIF_API_KEY = credentials('NOTIF_API_KEY')
     }
@@ -89,7 +89,7 @@ pipeline {
                     }
 
                     echo 'Start Deploy on Production'
-                    if (currentBranch.contains('release-fe')) {
+                    if (currentTag.contains('release-fe')) {
                         sh "kubectl set image deployment logchimp-fe-app logchimp-fe-app=${tagBuildNumber} -n=logchimp-fe-prod"
                     } else {
                         sh "kubectl set image deployment logchimp-be-app logchimp-be-app=${tagBuildNumber} -n=logchimp-be-prod"
